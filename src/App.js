@@ -2,7 +2,7 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Users from "./pages/list/Users";
 import Single from "./pages/single/Single";
-import New from "./pages/new/New";
+import UserNew from "./pages/new/UserNew";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { productInputs, userInputs } from "./formSource";
 import "./style/dark.scss";
@@ -54,11 +54,37 @@ function App() {
                 path="new"
                 element={
                   <RequireAuth>
-                    <New inputs={userInputs} title="Add New User" />
+                    <UserNew inputs={userInputs} title="Add UserNew User" />
                   </RequireAuth>
                 }
               />
             </Route>
+            <Route path="categories">
+                  <Route
+                      index
+                      element={
+                          <RequireAuth>
+                              <Users/>
+                          </RequireAuth>
+                      }
+                  />
+                  <Route
+                      path=":categoryId"
+                      element={
+                          <RequireAuth>
+                              <Single />
+                          </RequireAuth>
+                      }
+                  />
+                  <Route
+                      path="new"
+                      element={
+                          <RequireAuth>
+                              <UserNew inputs={userInputs} title="Add UserNew Category" />
+                          </RequireAuth>
+                      }
+                  />
+              </Route>
             <Route path="products">
               <Route
                 index
@@ -80,7 +106,7 @@ function App() {
                 path="new"
                 element={
                   <RequireAuth>
-                    <New inputs={productInputs} title="Add New Product" />
+                    <UserNew inputs={productInputs} title="Add UserNew Product" />
                   </RequireAuth>
                 }
               />

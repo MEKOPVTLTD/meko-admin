@@ -15,7 +15,7 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 
-const New = ({ inputs, title }) => {
+const UserNew = ({ inputs, title }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
@@ -142,4 +142,4 @@ const New = ({ inputs, title }) => {
   );
 };
 
-export default New;
+export default UserNew;
