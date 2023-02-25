@@ -9,6 +9,7 @@ import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
+import CategoryTable from "./components/datatable/CategoryTable";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -59,12 +60,12 @@ function App() {
                 }
               />
             </Route>
-            <Route path="categories">
+            <Route path="category">
                   <Route
                       index
                       element={
                           <RequireAuth>
-                              <Users/>
+                              <CategoryTable/>
                           </RequireAuth>
                       }
                   />

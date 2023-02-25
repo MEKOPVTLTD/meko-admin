@@ -20,3 +20,4 @@ export const auth = getAuth();
 export const storage = getStorage(app);
 
 export const USERS_COLLECTION = "Users";
+export const CATEGORY_COLLECTION = "Category";

@@ -10,30 +10,15 @@ import {
     doc,
     onSnapshot,
 } from "firebase/firestore";
-import {auth, db, USERS_COLLECTION} from "../../firebase";
+import {CATEGORY_COLLECTION, db} from "../../firebase";
+import {categoryColumns} from "../../categoryTableSource";
 
-const UsersTable = () => {
+const CategoryTable = () => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
-        // const fetchData = async () => {
-        //   let list = [];
-        //   try {
-        //     const querySnapshot = await getDocs(collection(db, USERS_COLLECTION));
-        //     querySnapshot.forEach((doc) => {
-        //       list.push({ id: doc.id, ...doc.data() });
-        //     });
-        //     setData(list);
-        //     console.log(list);
-        //   } catch (err) {
-        //     console.log(err);
-        //   }
-        // };
-        // fetchData();
-
-        // LISTEN (REALTIME)
         const unsub = onSnapshot(
-            collection(db, USERS_COLLECTION),
+            collection(db, CATEGORY_COLLECTION),
             (snapShot) => {
                 let list = [];
                 snapShot.docs.forEach((doc) => {
@@ -53,7 +38,7 @@ const UsersTable = () => {
 
     const handleDelete = async (id) => {
         try {
-            await deleteDoc(doc(db, USERS_COLLECTION, id));
+            await deleteDoc(doc(db, CATEGORY_COLLECTION, id));
             setData(data.filter((item) => item.id !== id));
         } catch (err) {
             console.log(err);
@@ -68,21 +53,16 @@ const UsersTable = () => {
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
-                        <Link to="/users/test" style={{textDecoration: "none"}}>
+                        <Link to="/category/test" style={{textDecoration: "none"}}>
                             <div className="viewButton">View</div>
                         </Link>
                         <div
                             className="deleteButton"
                             onClick={() => handleDelete(params.row.id)}
                         >
-                            Delete Profile
+                            Delete Category
                         </div>
-                        <div
-                            className="deleteButton"
-                            onClick={() => alert("Please go to Firebase console to delete/deactivate user")}
-                        >
-                            Delete User
-                        </div>
+
                     </div>
                 );
             },
@@ -91,15 +71,15 @@ const UsersTable = () => {
     return (
         <div className="datatable">
             <div className="datatableTitle">
-                User Profile
-                <Link to="/users/new" className="link">
+                Category
+                <Link to="/category/new" className="link">
                     Add New
                 </Link>
             </div>
             <DataGrid
                 className="datagrid"
                 rows={data}
-                columns={userColumns.concat(actionColumn)}
+                columns={categoryColumns.concat(actionColumn)}
                 pageSize={10}
                 rowsPerPageOptions={[10]}
             />
@@ -107,4 +87,4 @@ const UsersTable = () => {
     );
 };
 
-export default UsersTable;
+export default CategoryTable;
