@@ -10,16 +10,16 @@ import {
   doc,
   onSnapshot,
 } from "firebase/firestore";
-import { db } from "../../firebase";
+import {adminAuth, auth, db, USERS_COLLECTION} from "../../firebase";
 
-const Datatable = () => {
+const UsersTable = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
     // const fetchData = async () => {
     //   let list = [];
     //   try {
-    //     const querySnapshot = await getDocs(collection(db, "users"));
+    //     const querySnapshot = await getDocs(collection(db, USERS_COLLECTION));
     //     querySnapshot.forEach((doc) => {
     //       list.push({ id: doc.id, ...doc.data() });
     //     });
@@ -33,7 +33,7 @@ const Datatable = () => {
 
     // LISTEN (REALTIME)
     const unsub = onSnapshot(
-      collection(db, "Users"),
+      collection(db, USERS_COLLECTION),
       (snapShot) => {
         let list = [];
         snapShot.docs.forEach((doc) => {
@@ -53,7 +53,7 @@ const Datatable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, "users", id));
+        await deleteDoc(doc(db, USERS_COLLECTION, id));
       setData(data.filter((item) => item.id !== id));
     } catch (err) {
       console.log(err);
@@ -94,12 +94,11 @@ const Datatable = () => {
         className="datagrid"
         rows={data}
         columns={userColumns.concat(actionColumn)}
-        pageSize={9}
-        rowsPerPageOptions={[9]}
-        checkboxSelection
+        pageSize={10}
+        rowsPerPageOptions={[10]}
       />
     </div>
   );
 };
 
-export default Datatable;
+export default UsersTable;

@@ -1,6 +1,6 @@
 import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
-import List from "./pages/list/List";
+import Users from "./pages/list/Users";
 import Single from "./pages/single/Single";
 import New from "./pages/new/New";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -38,7 +38,7 @@ function App() {
                 index
                 element={
                   <RequireAuth>
-                    <List />
+                    <Users/>
                   </RequireAuth>
                 }
               />
@@ -64,7 +64,7 @@ function App() {
                 index
                 element={
                   <RequireAuth>
-                    <List />
+                    <Users />
                   </RequireAuth>
                 }
               />
