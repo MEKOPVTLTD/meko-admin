@@ -11,11 +11,10 @@ import {
   setDoc,
 } from "firebase/firestore";
 import { auth, db, storage } from "../../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 
-const UserNew = ({ inputs, title }) => {
+const New = ({ inputs, title, collectionName }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
@@ -52,7 +51,7 @@ const UserNew = ({ inputs, title }) => {
         },
         () => {
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setData((prev) => ({ ...prev, img: downloadURL }));
+            setData((prev) => ({ ...prev, imageName: downloadURL }));
           });
         }
       );
@@ -71,19 +70,12 @@ const UserNew = ({ inputs, title }) => {
 
   const handleAdd = async (e) => {
     e.preventDefault();
-    try {
-      const res = await createUserWithEmailAndPassword(
-        auth,
-        data.email,
-        data.password
-      );
-      await setDoc(doc(db, "users", res.user.uid), {
-        ...data,
-        timeStamp: serverTimestamp(),
-      });
+    try{
+      await addDoc(collection(db, collectionName), data);
+      alert("Saved Successfully");
       navigate(-1)
-    } catch (err) {
-      console.log(err);
+    } catch (e) {
+      alert(e);
     }
   };
 
@@ -142,4 +134,4 @@ const UserNew = ({ inputs, title }) => {
   );
 };
 
-export default UserNew;
+export default New;

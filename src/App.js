@@ -2,14 +2,15 @@ import Home from "./pages/home/Home";
 import Login from "./pages/login/Login";
 import Users from "./pages/list/Users";
 import Single from "./pages/single/Single";
-import UserNew from "./pages/new/UserNew";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { productInputs, userInputs } from "./formSource";
+import {categoryInput, productInputs, userInputs} from "./formSource";
 import "./style/dark.scss";
 import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
-import CategoryTable from "./components/datatable/CategoryTable";
+import Categories from "./pages/list/Category";
+import New from "./pages/new/New";
+import {CATEGORY_COLLECTION} from "./firebase";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -51,21 +52,13 @@ function App() {
                   </RequireAuth>
                 }
               />
-              <Route
-                path="new"
-                element={
-                  <RequireAuth>
-                    <UserNew inputs={userInputs} title="Add UserNew User" />
-                  </RequireAuth>
-                }
-              />
             </Route>
             <Route path="category">
                   <Route
                       index
                       element={
                           <RequireAuth>
-                              <CategoryTable/>
+                              <Categories/>
                           </RequireAuth>
                       }
                   />
@@ -81,7 +74,7 @@ function App() {
                       path="new"
                       element={
                           <RequireAuth>
-                              <UserNew inputs={userInputs} title="Add UserNew Category" />
+                              <New inputs={categoryInput} title="Add New Category" collectionName = {CATEGORY_COLLECTION}/>
                           </RequireAuth>
                       }
                   />
@@ -107,7 +100,7 @@ function App() {
                 path="new"
                 element={
                   <RequireAuth>
-                    <UserNew inputs={productInputs} title="Add UserNew Product" />
+                      <New inputs={categoryInput} title="Add New Category" collectionName = {CATEGORY_COLLECTION}/>
                   </RequireAuth>
                 }
               />
