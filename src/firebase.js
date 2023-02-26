@@ -21,3 +21,4 @@ export const storage = getStorage(app);
 
 export const USERS_COLLECTION = "Users";
 export const CATEGORY_COLLECTION = "Category";
+export const SUB_CATEGORY_COLLECTION = "SubCategory";

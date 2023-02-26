@@ -1,7 +1,7 @@
-import "./list.scss"
-import Sidebar from "../../components/sidebar/Sidebar"
-import Navbar from "../../components/navbar/Navbar"
-import CategoryTable from "../../components/datatable/CategoryTable";
+import "../../../pages/list/list.scss"
+import Sidebar from "../../sidebar/Sidebar"
+import Navbar from "../../navbar/Navbar"
+import CategoryTable from "./CategoryTable";
 
 const Categories = () => {
   return (

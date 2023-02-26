@@ -1,6 +1,6 @@
-import "./datatable.scss";
+import "../datatable.scss";
 import {DataGrid} from "@mui/x-data-grid";
-import {userColumns, userRows} from "../../userTableSource";
+import {userColumns, userRows} from "../../../userTableSource";
 import {Link} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {
@@ -10,8 +10,8 @@ import {
     doc,
     onSnapshot,
 } from "firebase/firestore";
-import {CATEGORY_COLLECTION, db} from "../../firebase";
-import {categoryColumns} from "../../categoryTableSource";
+import {CATEGORY_COLLECTION, db} from "../../../firebase";
+import {categoryColumns} from "./categoryTableSource";
 
 const CategoryTable = () => {
     const [data, setData] = useState([]);
