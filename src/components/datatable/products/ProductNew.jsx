@@ -82,7 +82,7 @@ const ProductNew = ({inputs, title, collectionName}) => {
         const subCat = subCategories.find(subCat => subCat.id == data.subCategoryId)
         let searchTerm = data.type+ " " + data.name + " for " + subCat.serviceFor;
         try {
-            await addDoc(collection(db, collectionName), {...data, searchTerm: searchTerm.toLowerCase()});
+            await addDoc(collection(db, collectionName), {...data, searchTerm: searchTerm.toLowerCase(), price: parseInt(data.price)});
             alert("Saved Successfully");
             navigate(-1)
         } catch (e) {
@@ -99,29 +99,9 @@ const ProductNew = ({inputs, title, collectionName}) => {
                     <h1>{title}</h1>
                 </div>
                 <div className="bottom">
-                    <div className="left">
-                        <img
-                            src={
-                                file
-                                    ? URL.createObjectURL(file)
-                                    : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
-                            }
-                            alt=""
-                        />
-                    </div>
+
                     <div className="right">
                         <form onSubmit={handleAdd}>
-                            <div className="formInput">
-                                <label htmlFor="file">
-                                    Image: <DriveFolderUploadOutlinedIcon className="icon"/>
-                                </label>
-                                <input
-                                    type="file"
-                                    id="file"
-                                    onChange={(e) => setFile(e.target.files[0])}
-                                    style={{display: "none"}}
-                                />
-                            </div>
 
                             {inputs.map((input) => (
                                 <div className="formInput" key={input.id}>

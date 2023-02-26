@@ -15,7 +15,7 @@ export const categoryColumns = [
     renderCell: (params) => {
         return(
             <div>
-                {params.row.category.name}
+                {params.row.category ? params.row.category.name : "No Category Selected"}
             </div>
         )
     }},

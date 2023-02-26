@@ -80,7 +80,7 @@ const SubCategoryNew = ({inputs, title, collectionName}) => {
     const handleAdd = async (e) => {
         e.preventDefault();
         try {
-            await addDoc(collection(db, collectionName), data);
+            await addDoc(collection(db, collectionName), {...data, index: parseInt(data.index)});
             alert("Saved Successfully");
             navigate(-1)
         } catch (e) {

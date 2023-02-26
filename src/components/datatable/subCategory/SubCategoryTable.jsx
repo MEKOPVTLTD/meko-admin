@@ -9,7 +9,7 @@ import {
     doc,
     onSnapshot,
 } from "firebase/firestore";
-import {SUB_CATEGORY_COLLECTION, db, CATEGORY_COLLECTION} from "../../../firebase";
+import {SUB_CATEGORY_COLLECTION, db} from "../../../firebase";
 import {categoryColumns} from "./categoryTableSource";
 import {getCategories} from "../../actions/categoryAction";
 
@@ -78,7 +78,7 @@ const SubCategoryTable = () => {
     return (
         <div className="datatable">
             <div className="datatableTitle">
-                Category
+                Sub Category
                 <Link to="/subCategory/new" className="link">
                     Add New
                 </Link>

@@ -23,7 +23,7 @@ export const productColumns = [
         renderCell: (params) => {
             return (
                 <div>
-                    {params.row.subCategory.serviceFor}
+                    {params.row.subCategory? params.row.subCategory.serviceFor : "No Sub Category"}
                 </div>
             )
         }
@@ -35,7 +35,7 @@ export const productColumns = [
         renderCell: (params) => {
             return (
                 <div>
-                    {params.row.subCategory.name}
+                    {params.row.subCategory? params.row.subCategory.name: "No Sub Category"}
                 </div>
             )
         }
@@ -47,7 +47,7 @@ export const productColumns = [
         renderCell: (params) => {
             return (
                 <div>
-                    {params.row.category.name}
+                    {params.row.category ? params.row.category.name : "No Category"}
                 </div>
             )
         }
