@@ -8,10 +8,12 @@ import { useContext } from "react";
 import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
 import Categories from "./components/datatable/category/Category";
-import New from "./pages/new/New";
-import {CATEGORY_COLLECTION} from "./firebase";
+import CategoryNew from "./components/datatable/category/CategoryNew";
+import {CATEGORY_COLLECTION, SUB_CATEGORY_COLLECTION} from "./firebase";
 import {categoryInput} from "./components/datatable/category/categoryForm";
 import SubCategories from "./components/datatable/subCategory/SubCategory";
+import SubCategoryNew from "./components/datatable/subCategory/SubCategoryNew";
+import {subCategoryInput} from "./components/datatable/subCategory/subCategoryForm";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -75,7 +77,7 @@ function App() {
                       path="new"
                       element={
                           <RequireAuth>
-                              <New inputs={categoryInput} title="Add New Category" collectionName = {CATEGORY_COLLECTION}/>
+                              <CategoryNew inputs={categoryInput} title="Add CategoryNew Category" collectionName = {CATEGORY_COLLECTION}/>
                           </RequireAuth>
                       }
                   />
@@ -101,7 +103,7 @@ function App() {
                       path="new"
                       element={
                           <RequireAuth>
-                              <New inputs={categoryInput} title="Add New Sub Category" collectionName = {CATEGORY_COLLECTION}/>
+                              <SubCategoryNew inputs={subCategoryInput} title="Add New Sub Category" collectionName = {SUB_CATEGORY_COLLECTION}/>
                           </RequireAuth>
                       }
                   />

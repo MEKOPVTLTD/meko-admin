@@ -1,20 +1,17 @@
-import "./new.scss";
-import Sidebar from "../../components/sidebar/Sidebar";
-import Navbar from "../../components/navbar/Navbar";
+import "../../../pages/new/new.scss";
+import Sidebar from "../../sidebar/Sidebar";
+import Navbar from "../../navbar/Navbar";
 import DriveFolderUploadOutlinedIcon from "@mui/icons-material/DriveFolderUploadOutlined";
 import { useEffect, useState } from "react";
 import {
   addDoc,
-  collection,
-  doc,
-  serverTimestamp,
-  setDoc,
+  collection
 } from "firebase/firestore";
-import { auth, db, storage } from "../../firebase";
+import { auth, db, storage } from "../../../firebase";
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 
-const New = ({ inputs, title, collectionName }) => {
+const CategoryNew = ({ inputs, title, collectionName }) => {
   const [file, setFile] = useState("");
   const [data, setData] = useState({});
   const [per, setPerc] = useState(null);
@@ -134,4 +131,4 @@ const New = ({ inputs, title, collectionName }) => {
   );
 };
 
-export default New;
+export default CategoryNew;

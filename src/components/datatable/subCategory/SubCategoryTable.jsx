@@ -11,23 +11,11 @@ import {
 } from "firebase/firestore";
 import {SUB_CATEGORY_COLLECTION, db, CATEGORY_COLLECTION} from "../../../firebase";
 import {categoryColumns} from "./categoryTableSource";
+import {getCategories} from "../../actions/categoryAction";
 
 const SubCategoryTable = () => {
     const [data, setData] = useState([]);
 
-    const getCategories = async () => {
-        let list = [];
-        try {
-            const querySnapshot = await getDocs(collection(db, CATEGORY_COLLECTION));
-            querySnapshot.forEach((doc) => {
-                list.push({id: doc.id, ...doc.data()});
-            });
-            return list;
-        } catch (err) {
-            console.log(err);
-        }
-
-    }
 
     useEffect(async () => {
         const categories = await getCategories();
@@ -91,7 +79,7 @@ const SubCategoryTable = () => {
         <div className="datatable">
             <div className="datatableTitle">
                 Category
-                <Link to="/category/new" className="link">
+                <Link to="/subCategory/new" className="link">
                     Add New
                 </Link>
             </div>
