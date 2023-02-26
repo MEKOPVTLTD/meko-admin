@@ -9,11 +9,14 @@ import { DarkModeContext } from "./context/darkModeContext";
 import { AuthContext } from "./context/AuthContext";
 import Categories from "./components/datatable/category/Category";
 import CategoryNew from "./components/datatable/category/CategoryNew";
-import {CATEGORY_COLLECTION, SUB_CATEGORY_COLLECTION} from "./firebase";
+import {CATEGORY_COLLECTION, PRODUCT_COLLECTION, SUB_CATEGORY_COLLECTION} from "./firebase";
 import {categoryInput} from "./components/datatable/category/categoryForm";
 import SubCategories from "./components/datatable/subCategory/SubCategory";
 import SubCategoryNew from "./components/datatable/subCategory/SubCategoryNew";
 import {subCategoryInput} from "./components/datatable/subCategory/subCategoryForm";
+import Products from "./components/datatable/products/Product";
+import ProductNew from "./components/datatable/products/ProductNew";
+import {productInput} from "./components/datatable/products/productForm";
 
 function App() {
   const { darkMode } = useContext(DarkModeContext);
@@ -104,6 +107,32 @@ function App() {
                       element={
                           <RequireAuth>
                               <SubCategoryNew inputs={subCategoryInput} title="Add New Sub Category" collectionName = {SUB_CATEGORY_COLLECTION}/>
+                          </RequireAuth>
+                      }
+                  />
+              </Route>
+            <Route path="products">
+                  <Route
+                      index
+                      element={
+                          <RequireAuth>
+                              <Products/>
+                          </RequireAuth>
+                      }
+                  />
+                  <Route
+                      path=":productId"
+                      element={
+                          <RequireAuth>
+                              <Single />
+                          </RequireAuth>
+                      }
+                  />
+                  <Route
+                      path="new"
+                      element={
+                          <RequireAuth>
+                              <ProductNew inputs={productInput} title="Add New Product Category" collectionName = {PRODUCT_COLLECTION}/>
                           </RequireAuth>
                       }
                   />
