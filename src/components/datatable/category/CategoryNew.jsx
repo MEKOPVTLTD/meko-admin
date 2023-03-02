@@ -21,7 +21,6 @@ const CategoryNew = ({ inputs, title, collectionName }) => {
     const uploadFile = () => {
       const name = new Date().getTime() + file.name;
 
-      console.log(name);
       const storageRef = ref(storage, file.name);
       const uploadTask = uploadBytesResumable(storageRef, file);
 
