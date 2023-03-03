@@ -12,13 +12,13 @@ import {ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import {useNavigate} from "react-router-dom";
 import {getCategories, getSubCategories} from "../../actions/categoryAction";
 import Select from "react-select";
+import {uploadContent} from "../../actions/storageAction";
 
 const ProductNew = ({inputs, title, collectionName}) => {
     const [file, setFile] = useState("");
     const [data, setData] = useState({});
     const [subCategories, setSubCategories] = useState([]);
 
-    const genders = [{value: 'MALE', label: 'Male'}, {value: 'FEMALE', label: 'Female'}];
 
     const [per, setPerc] = useState(null);
     const navigate = useNavigate()
@@ -26,41 +26,7 @@ const ProductNew = ({inputs, title, collectionName}) => {
     useEffect(async () => {
         const subCategories = await getSubCategories();
         setSubCategories(subCategories);
-        const uploadFile = () => {
-            const name = new Date().getTime() + file.name;
-
-            console.log(name);
-            const storageRef = ref(storage, file.name);
-            const uploadTask = uploadBytesResumable(storageRef, file);
-
-            uploadTask.on(
-                "state_changed",
-                (snapshot) => {
-                    const progress =
-                        (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    console.log("Upload is " + progress + "% done");
-                    setPerc(progress);
-                    switch (snapshot.state) {
-                        case "paused":
-                            console.log("Upload is paused");
-                            break;
-                        case "running":
-                            console.log("Upload is running");
-                            break;
-                        default:
-                            break;
-                    }
-                },
-                (error) => {
-                    console.log(error);
-                },
-                () => {
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        setData((prev) => ({...prev, imageName: downloadURL}));
-                    });
-                }
-            );
-        };
+        const uploadFile = uploadContent(file, setPerc, setData);
         file && uploadFile();
     }, [file]);
 
