@@ -46,9 +46,13 @@ const ProductNew = ({inputs, title, collectionName}) => {
     const handleAdd = async (e) => {
         e.preventDefault();
         const subCat = subCategories.find(subCat => subCat.id == data.subCategoryId)
-        let searchTerm = data.type+ " " + data.name + " for " + subCat.serviceFor;
+        let searchTerm = data.type + " " + data.name + " for " + subCat.serviceFor;
         try {
-            await addDoc(collection(db, collectionName), {...data, searchTerm: searchTerm.toLowerCase(), price: parseInt(data.price)});
+            await addDoc(collection(db, collectionName), {
+                ...data,
+                searchTerm: searchTerm.toLowerCase(),
+                price: parseInt(data.price)
+            });
             alert("Saved Successfully");
             navigate(-1)
         } catch (e) {
@@ -88,7 +92,12 @@ const ProductNew = ({inputs, title, collectionName}) => {
                                     onChange={e => handleSelect(e)}
                                     placeholder="Select Sub Category..."
                                     options={subCategories.map(subCategory => {
-                                        return {value: {subCategoryId : subCategory.id, categoryId: subCategory.categoryId }, label: subCategory.name + " - " + subCategory.serviceFor}
+                                        return {
+                                            value: {
+                                                subCategoryId: subCategory.id,
+                                                categoryId: subCategory.categoryId
+                                            }, label: subCategory.name + " - " + subCategory.serviceFor
+                                        }
                                     })}
 
                                 />

@@ -1,4 +1,4 @@
-import {collection, getDocs} from "firebase/firestore";
+import {collection, getDocs, getDoc, doc} from "firebase/firestore";
 import {CATEGORY_COLLECTION, db, SUB_CATEGORY_COLLECTION} from "../../firebase";
 
 export const getCategories = async () => {
@@ -12,6 +12,18 @@ export const getCategories = async () => {
     } catch (err) {
         console.log(err);
     }
+
+}
+
+export const getCategoriesById = async (id) => {
+    let data = {};
+    try {
+        const querySnapshot = await getDoc(doc(db, CATEGORY_COLLECTION, id));
+        data = {...querySnapshot.data(), id};
+    } catch (err){
+        console.log(err)
+    }
+    return data;
 
 }
 
