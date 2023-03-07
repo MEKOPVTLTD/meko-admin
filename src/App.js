@@ -73,7 +73,7 @@ function App() {
                                 element={
                                     <RequireAuth>
                                         <CategoryNew inputs={categoryInput}
-                                                     title="Edit CategoryNew Category"
+                                                     title="Edit Category"
                                                      collectionName={CATEGORY_COLLECTION}/>
                                     </RequireAuth>
                                 }
@@ -82,7 +82,7 @@ function App() {
                                 path="new"
                                 element={
                                     <RequireAuth>
-                                        <CategoryNew inputs={categoryInput} title="Add New Category"
+                                        <CategoryNew inputs={categoryInput} title="Add Category"
                                                      collectionName={CATEGORY_COLLECTION}/>
                                     </RequireAuth>
                                 }
@@ -98,10 +98,11 @@ function App() {
                                 }
                             />
                             <Route
-                                path=":categoryId"
+                                path=":subCategoryId"
                                 element={
                                     <RequireAuth>
-                                        <Single/>
+                                        <SubCategoryNew inputs={subCategoryInput} title="Edit Sub Category"
+                                                        collectionName={SUB_CATEGORY_COLLECTION}/>
                                     </RequireAuth>
                                 }
                             />

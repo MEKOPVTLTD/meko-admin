@@ -27,6 +27,17 @@ export const getCategoriesById = async (id) => {
 
 }
 
+export const getSubCategoriesById = async (id) => {
+    let data = {};
+    try {
+        const querySnapshot = await getDoc(doc(db, SUB_CATEGORY_COLLECTION, id));
+        data = {...querySnapshot.data(), id};
+    } catch (err){
+        console.log(err)
+    }
+    return data;
+}
+
 export const getSubCategories = async () => {
     let list = [];
     try {

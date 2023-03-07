@@ -11,7 +11,7 @@ import {auth, db, storage} from "../../../firebase";
 import {ref, uploadBytesResumable, getDownloadURL} from "firebase/storage";
 import {useNavigate} from "react-router-dom";
 import {getCategories, getSubCategories} from "../../actions/categoryAction";
-import Select from "react-select";
+// import Select from "react-select";
 import {uploadContent} from "../../actions/storageAction";
 
 const ProductNew = ({inputs, title, collectionName}) => {
@@ -65,43 +65,40 @@ const ProductNew = ({inputs, title, collectionName}) => {
             <Sidebar/>
             <div className="newContainer">
                 <Navbar/>
-                <div className="top">
-                    <h1>{title}</h1>
-                </div>
-                <div className="bottom">
-
-                    <div className="right">
+                <div className="containerBody">
+                    <div className="bottom">
                         <form onSubmit={handleAdd}>
+                            <label className="formLabel">{title}</label>
 
-                            {inputs.map((input) => (
-                                <div className="formInput" key={input.id}>
-                                    <label>{input.label}</label>
-                                    <input
-                                        id={input.id}
-                                        type={input.type}
-                                        placeholder={input.placeholder}
-                                        onChange={handleInput}
-                                    />
-                                </div>
-                            ))}
-
-                            <div className="formInput" key="category">
-
-                                <Select
-                                    id={"category"}
-                                    onChange={e => handleSelect(e)}
-                                    placeholder="Select Sub Category..."
-                                    options={subCategories.map(subCategory => {
-                                        return {
-                                            value: {
-                                                subCategoryId: subCategory.id,
-                                                categoryId: subCategory.categoryId
-                                            }, label: subCategory.name + " - " + subCategory.serviceFor
-                                        }
-                                    })}
-
+                            <div className="formInput" key="name">
+                                <input
+                                    value={data.name}
+                                    id="name"
+                                    type="text"
+                                    placeholder="Name"
+                                    onChange={handleInput}
                                 />
                             </div>
+                            <div className="formInput" key="type">
+                                <input
+                                    value={data.type}
+                                    id="type"
+                                    type="text"
+                                    placeholder="Type"
+                                    onChange={handleInput}
+                                />
+                            </div>
+                            <div className="formInput" key="price">
+                                <input
+                                    value={data.price}
+                                    id="price"
+                                    type="number"
+                                    placeholder="Price"
+                                    onChange={handleInput}
+                                />
+                            </div>
+
+
 
                             <button disabled={per !== null && per < 100} type="submit">
                                 Send
@@ -109,6 +106,7 @@ const ProductNew = ({inputs, title, collectionName}) => {
                         </form>
                     </div>
                 </div>
+
             </div>
         </div>
     );

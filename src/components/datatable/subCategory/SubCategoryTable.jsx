@@ -60,8 +60,8 @@ const SubCategoryTable = () => {
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
-                        <Link to="/category/test" style={{textDecoration: "none"}}>
-                            <div className="viewButton">View</div>
+                        <Link to={`/subCategory/${params.row.id}`} style={{textDecoration: "none"}}>
+                            <div className="viewButton">Edit</div>
                         </Link>
                         <div
                             className="deleteButton"
