@@ -72,8 +72,7 @@ function App() {
                                 path=":categoryId"
                                 element={
                                     <RequireAuth>
-                                        <CategoryNew inputs={categoryInput}
-                                                     title="Edit Category"
+                                        <CategoryNew title="Edit Category"
                                                      collectionName={CATEGORY_COLLECTION}/>
                                     </RequireAuth>
                                 }
@@ -82,7 +81,7 @@ function App() {
                                 path="new"
                                 element={
                                     <RequireAuth>
-                                        <CategoryNew inputs={categoryInput} title="Add Category"
+                                        <CategoryNew title="Add Category"
                                                      collectionName={CATEGORY_COLLECTION}/>
                                     </RequireAuth>
                                 }
@@ -101,7 +100,7 @@ function App() {
                                 path=":subCategoryId"
                                 element={
                                     <RequireAuth>
-                                        <SubCategoryNew inputs={subCategoryInput} title="Edit Sub Category"
+                                        <SubCategoryNew title="Edit Sub Category"
                                                         collectionName={SUB_CATEGORY_COLLECTION}/>
                                     </RequireAuth>
                                 }
@@ -110,7 +109,7 @@ function App() {
                                 path="new"
                                 element={
                                     <RequireAuth>
-                                        <SubCategoryNew inputs={subCategoryInput} title="Add New Sub Category"
+                                        <SubCategoryNew title="Add Sub Category"
                                                         collectionName={SUB_CATEGORY_COLLECTION}/>
                                     </RequireAuth>
                                 }
@@ -129,7 +128,8 @@ function App() {
                                 path=":productId"
                                 element={
                                     <RequireAuth>
-                                        <Single/>
+                                        <ProductNew title="Edit Product"
+                                                    collectionName={PRODUCT_COLLECTION}/>
                                     </RequireAuth>
                                 }
                             />
@@ -137,7 +137,7 @@ function App() {
                                 path="new"
                                 element={
                                     <RequireAuth>
-                                        <ProductNew inputs={productInput} title="Add New Product Category"
+                                        <ProductNew title="Add Product"
                                                     collectionName={PRODUCT_COLLECTION}/>
                                     </RequireAuth>
                                 }

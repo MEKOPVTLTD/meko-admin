@@ -27,7 +27,7 @@ import Box from "@mui/material/Box";
 import {useForm} from "react-hook-form";
 import {updateDoc} from "@firebase/firestore";
 
-const SubCategoryNew = ({inputs, title, collectionName}) => {
+const SubCategoryNew = ({title, collectionName}) => {
     const [file, setFile] = useState("");
     const [data, setData] = useState({});
     const [categories, setCategories] = useState([]);

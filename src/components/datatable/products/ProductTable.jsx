@@ -59,8 +59,8 @@ const ProductTable = () => {
             renderCell: (params) => {
                 return (
                     <div className="cellAction">
-                        <Link to="/category/test" style={{textDecoration: "none"}}>
-                            <div className="viewButton">View</div>
+                        <Link to={`/products/${params.row.id}`} style={{textDecoration: "none"}}>
+                            <div className="viewButton">Edit</div>
                         </Link>
                         <div
                             className="deleteButton"
